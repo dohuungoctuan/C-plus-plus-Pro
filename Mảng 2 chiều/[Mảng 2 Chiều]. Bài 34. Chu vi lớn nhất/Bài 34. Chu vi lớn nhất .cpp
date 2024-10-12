@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dx[4]={-1, 1, 0, 0};
+int dy[4]={0, 0, 1, -1};
+int n,m;
+int a[101][101];
+int ans=0;
+void dfs(int i, int j)
+{
+    a[i][j]=2;
+    int x=0;
+    for(int k=0;k<4;k++)
+    {
+        int i1=dx[k]+i;
+        int j1=dy[k]+j;
+        if(i1>=0 && j1>=0 && i1<n && j1<m && a[i1][j1]!=0) ++x;
+    }
+    ans+=(4-x);
+    for(int k=0;k<4;k++)
+    {
+        int i1=dx[k]+i;
+        int j1=dy[k]+j;
+        if(i1<n && i1>=0 && j1<m && j1>=0 && a[i1][j1]==1)
+            dfs(i1,j1);
+    }
+}
+int main()
+{
+    set<int>se;
+    cin>>n>>m;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+            cin>>a[i][j];
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(a[i][j]==1)
+            {
+                ans=0;
+                dfs(i,j);
+                se.insert(ans);
+            }
+        }
+    }
+    cout<<*se.rbegin();
+
+}
+
