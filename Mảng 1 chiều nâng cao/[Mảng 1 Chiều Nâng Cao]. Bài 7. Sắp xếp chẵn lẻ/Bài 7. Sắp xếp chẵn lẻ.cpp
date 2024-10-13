@@ -3,9 +3,9 @@ using namespace std;
 bool cmp(int a, int b)
 {
     if(a%2!=0 && b%2==0)
-        return true;
+        return true; //Đúng vị trí => không thay đổi
     if(a%2==0 && b%2!=0)
-        return false;
+        return false;//Sai vị trí => thay đổi => chạy xuống dòng 11
     if(a%2!=0 && b%2!=0)
         return a > b;
     return a < b;
