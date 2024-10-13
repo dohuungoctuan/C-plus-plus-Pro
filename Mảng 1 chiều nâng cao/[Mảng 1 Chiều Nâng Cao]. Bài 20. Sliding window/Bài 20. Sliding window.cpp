@@ -2,19 +2,28 @@
 using namespace std;
 int main()
 {
-    int x;
-    int cnt = 0;
-    int odd = 0, even = 0;
-    while(cin >> x)
+    int n, k;
+    cin>>n>>k;
+    int a[n];
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    long long sum = 0;
+    for(int i=0;i<k;i++)
+        sum+=a[i];
+    int max_sum = sum;
+    int index = 0;
+    for(int i=k;i<n;i++)
     {
-        if(x % 2 == 0)
-            even++;
-        else odd++;
-        cnt++;
+        sum = sum - a[i-k] + a[i];
+        if(sum > max_sum)
+        {
+            max_sum = sum;
+            index = i-k+1;
+        }
     }
-    if(cnt % 2 == 0 && even > odd)
-        cout<<"YES"<<endl;
-    else if(cnt % 2 == 1 && even < odd)
-        cout<<"YES"<<endl;
-    else cout<<"NO";
+    cout<<max_sum<<endl;
+    for(int i = index; i < index+k; i++)
+    {
+        cout<<a[i]<<" ";
+    }
 }
