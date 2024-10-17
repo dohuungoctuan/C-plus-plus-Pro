@@ -7,7 +7,7 @@ long long euler(long long n)
     {
         if(n%i==0)
         {
-            res=res-res/i;
+            res=res-res/i; // res = res * (1 - 1/i)
             while(n%i==0)
             {
                 n/=i;
